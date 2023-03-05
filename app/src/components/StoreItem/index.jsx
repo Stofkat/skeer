@@ -17,7 +17,7 @@ const StoreItem = ({
     const dispatch = useDispatch();
 
 
-    const onToggled = (name) => {
+    const onToggled = () => {
         if(selected[name]) {
             dispatch(storeDeselected(name));
         } else {
@@ -28,7 +28,7 @@ const StoreItem = ({
 
     return (
         <div className="store-item">
-            <img src={img} alt="supermarket icon" />
+            <img className="store-icon" src={`/img/${name}.png`} alt="store icon" />
             <span className="label">{label}</span>
             <Switch  onChange={onToggled}  color="primary" checked={selected[name]} />
         </div>

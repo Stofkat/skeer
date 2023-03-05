@@ -38,7 +38,7 @@ const ModalAddProduct = ({
           </div>
           <div className="col">
             <Button
-              onClick={onConfirm(productName)}
+              onClick={()=> onConfirm(productName)}
               label="Add"
             />
           </div>

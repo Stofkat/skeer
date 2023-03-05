@@ -1,5 +1,7 @@
+@import "style/index.scss";
+
 .button {
-    background-color: olivedrab;
+    background-color: $color-primary;
     border-radius: 4px;
     padding: 1rem;
     color: white;
@@ -15,8 +17,8 @@
     }
     &.secondary {
         background-color: white;
-        border: solid 2px olivedrab;
-        color: olivedrab;
+        border: solid 2px $color-primary;
+        color: $color-primary;
 
     }
 }

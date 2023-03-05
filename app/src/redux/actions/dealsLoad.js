@@ -1,23 +1,29 @@
-import doRequest from "helpers/doRequest";
 import { API_URL } from "constants/urls";
 import { dealsLoaded, dealsLoading } from "redux/slices/dealsSlice";
+import apiCall from "helpers/apiCall";
 
-export const cardsLoad = () =>
+export const dealsLoad = () =>
   async (dispatch, getState) => {
-    
+
     dispatch(dealsLoading());
 
     const { products } = getState().products;
-    const { selected : stores } = getState().stores;
+    const { selected } = getState().stores;
 
-    const data = await doRequest(`${API_URL}/deals`, "POST", {
+    const stores = Object.keys(selected);
+    const productsKeys = Object.keys(products);
+    const productNames =  productsKeys.map((key)=> {
+      return products[key].name;
+    })
+
+    const data = await apiCall(`${API_URL}/deals`, "POST", {
       stores,
-      products
+      products: productNames
     });
 
     const mappedDeals = {};
     data.forEach(deal => {
-      mappedDeals[deal.id] = deal;
+      mappedDeals[deal.name + deal.store] = deal;
     });
 
     dispatch(dealsLoaded(mappedDeals));

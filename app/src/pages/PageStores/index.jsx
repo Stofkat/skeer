@@ -14,7 +14,7 @@ const PageStores = () => {
 
   useEffect(() => {
     dispatch(storesLoad());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="page-stores">
@@ -22,12 +22,7 @@ const PageStores = () => {
       <div className="container-types">
         {Object.keys(stores).map((key) => {
           const store = stores[key];
-          return (
-            <StoreItem
-              store={store}
-              key={store.name}
-            />
-          );
+          return (<StoreItem store={store} key={store.name} />);
         })}
       </div>
     </div>

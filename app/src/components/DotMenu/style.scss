@@ -46,6 +46,11 @@
   color: #333;
   outline: none;
 
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
   &:hover {
     color: $color-primary;
   }

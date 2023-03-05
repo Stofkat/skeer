@@ -24,7 +24,7 @@ const PageProducts = () => {
   const keys = Object.keys(products);
 
   const onAddProduct = (name) => {
-    // dispatch(productAdd(name));
+    dispatch(productAdd(name));
     setAddProduct(false);
   };
 
