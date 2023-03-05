@@ -25,20 +25,23 @@ async function storeScrapedData(weekNumber, storeName, products) {
     `);
 
   for (let product of products) {
-    await stmt.run(product.name, product.description, product.img, product.price, storeName, weekNumber);
+    await stmt.run(
+      product.name,
+      product.description,
+      product.img,
+      product.price,
+      storeName,
+      weekNumbe
+    );
   }
 
   await stmt.finalize();
 }
 
 async function productScraper({ url, selectors }) {
-
   const browser = await puppeteer.launch({
     headless: false, // Set headless to false to open the browser window
-    args: [
-      '--no-sandbox',
-      // '--disable-setuid-sandbox',
-    ]
+    args: ['--no-sandbox']
   });
 
   const page = await browser.newPage();
@@ -50,12 +53,13 @@ async function productScraper({ url, selectors }) {
   }
 
   await page.evaluate(async () => {
-    await new Promise((resolve, reject) => {
+    await new Promise((resolve) => {
+      
       let totalHeight = 0;
-      let distance = 100;
-      let scrollDelay = 200;
+      const distance = 100;
+      const scrollDelay = 200;
 
-      let timer = setInterval(() => {
+      const timer = setInterval(() => {
         let scrollHeight = document.body.scrollHeight;
         window.scrollBy(0, distance);
         totalHeight += distance;
@@ -64,12 +68,13 @@ async function productScraper({ url, selectors }) {
           clearInterval(timer);
           resolve();
         }
+        
       }, scrollDelay);
+
     });
   });
 
-
-  await page.waitForSelector(selectors.product, { timeout: 100000 }); // additional 30 seconds timeout
+  await page.waitForSelector(selectors.product, { timeout: 10000 });
 
   const products = await page.$$(selectors.product);
   const productsParsed = [];
@@ -79,20 +84,23 @@ async function productScraper({ url, selectors }) {
 
       const name = el.querySelector(selectors.name).innerText.trim();
       let img = el.querySelector(selectors.image).src.trim();
+
       if (img.startsWith("data:image")) {
         img = el.querySelector(selectors.image).getAttribute("srcset")?.trim();
-        if(!img) {
+        if (!img) {
           img = el.querySelector(selectors.image).getAttribute("data-src")?.trim();
         }
       }
+
       let price = "";
       let description = null;
-      try {
 
+      try {
         if (selectors.description) {
           description = el.querySelector(selectors.description).innerText.trim();
         }
       } catch { }
+
       try {
         if (selectors.price) {
           price = el.querySelector(selectors.price).innerText.trim();
@@ -104,8 +112,6 @@ async function productScraper({ url, selectors }) {
       } catch { }
 
       return { name, price, img, description };
-
-
 
     }, selectors);
 
@@ -120,7 +126,6 @@ async function productScraper({ url, selectors }) {
 
 
 async function dealsScrapeAction() {
-
   const weekNumber = "" + moment().week();
 
   for (const index in stores) {
@@ -129,11 +134,7 @@ async function dealsScrapeAction() {
 
     // Only write on a succesful scrape
     if (products.length > 0 && products[0].name?.length > 0) {
-
-      console.log("products", products);
-
       storeScrapedData(weekNumber, store.name, products);
-
     }
 
   }

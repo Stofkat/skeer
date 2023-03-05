@@ -55,7 +55,6 @@ const stores = [
         dec: ".product-card__price__euros",
         fract: ".product-card__price__cents"
       }
-
     }
   },
   {
