@@ -1,0 +1,77 @@
+@import "style/index.scss";
+
+.dot-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: #333;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+  top: calc(100% - 1.5rem);
+  right: 0;
+  z-index: 500;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+
+  &.hide {
+    pointer-events: none;
+    animation: fadeout 0.5s forwards;
+  }
+
+  &.dont-render {
+    display: none;
+  }
+
+  &.show {
+    display: flex;
+    pointer-events: all;
+    animation: fadein 0.5s forwards;
+  }
+
+  span {
+    cursor: pointer;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.dot-menu-button {
+  color: #333;
+  outline: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &.dark {
+    color: white;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
+}

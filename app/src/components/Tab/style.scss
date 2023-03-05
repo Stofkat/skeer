@@ -1,0 +1,79 @@
+@import "style/index.scss";
+
+
+
+.tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  color: lightgray;
+
+  .tab-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  &.selected {
+    color: $color-primary;
+    &:after{
+      position: absolute;
+      bottom: 0;
+      background-color: $color-primary;
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+    }
+    span {
+      color: #333;
+    }
+
+  }
+
+  &.highlighted {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    color: lightgray;
+    position: absolute;
+    background: white;
+    margin-top: -30px;
+    box-shadow: 0 -5px 5px -5px #000;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    svg {
+      color: $color-primary;
+      opacity: 0.5;
+    }
+    .tab-icon {
+      width: 40px;
+      height: 40px;
+    }
+    &.selected {
+      background-color: $color-primary;
+      color: white;
+      svg {
+        color: white;
+        opacity: 1;
+      }
+
+    }
+  }
+
+  svg {
+    width: 24;
+    height: 24px;
+  }
+
+  span {
+    margin-top: 0.5rem;
+    color: $color-grey;
+    font-size: 11px;
+    font-weight: 600;
+
+  }
+}

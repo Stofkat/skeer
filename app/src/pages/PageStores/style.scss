@@ -1,0 +1,19 @@
+@import "style/index.scss";
+
+
+.page-stores {
+    padding: 1rem;
+
+}
+
+
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

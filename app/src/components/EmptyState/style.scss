@@ -1,0 +1,23 @@
+.empty-state {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ccc;
+  flex-direction: column;
+
+  .empty-state-icon {
+    width: 64px;
+    height: 64px;
+  }
+  
+  span {
+    text-align: center;
+    margin-top: 1rem;
+    max-width: 256px;
+    font-size: 16px;
+  }
+}

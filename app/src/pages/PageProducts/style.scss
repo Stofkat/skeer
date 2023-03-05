@@ -1,0 +1,14 @@
+.page-products{
+    display: flex;
+    flex-direction: column;  
+    position: relative;
+    overflow: auto;
+    flex: 1;
+    background-color: #f1f1f1;
+
+    .scroll-list {
+        padding: 1rem;
+        padding-top: 1rem;
+        overflow-y: auto;
+    }
+}

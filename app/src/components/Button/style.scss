@@ -1,0 +1,22 @@
+.button {
+    background-color: olivedrab;
+    border-radius: 4px;
+    padding: 1rem;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.9;
+    }
+    &.disabled {
+        background-color: grey;
+        pointer-events: none;
+    }
+    &.secondary {
+        background-color: white;
+        border: solid 2px olivedrab;
+        color: olivedrab;
+
+    }
+}
