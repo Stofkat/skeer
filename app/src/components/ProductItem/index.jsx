@@ -20,8 +20,8 @@ const ProductItem = ({ product, onRemove, onEdit }) => {
           <span className="actions">
             <DotMenu
               menuItems={[
-                { label: "Edit", action: () => { onEdit(id) } },
-                { label: "Remove", action: () => onRemove(id) },
+                { label: "Aanpassen", action: () => { onEdit(id) } },
+                { label: "Verwijderen", action: () => onRemove(id) },
               ]} />
 
           </span>

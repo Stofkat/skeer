@@ -5,6 +5,7 @@ import StoreItem from "components/StoreItem";
 import { storesLoad } from "redux/actions/storesLoad";
 
 import "./style.scss";
+import Header from "components/Header";
 
 const PageStores = () => {
 
@@ -18,8 +19,8 @@ const PageStores = () => {
 
   return (
     <div className="page-stores">
-      <h2 className="title">Winkels</h2>
-      <div className="container-types">
+      <Header title="Winkels"/>
+      <div className="container-stores">
         {Object.keys(stores).map((key) => {
           const store = stores[key];
           return (<StoreItem store={store} key={store.name} />);

@@ -14,14 +14,18 @@ async function storeScrapedData(weekNumber, storeName, products) {
     description TEXT,
     img TEXT,
     price TEXT,
+    url TEXT,
     store TEXT,
     week INTEGER
   )`);
 
+  // Clear all previous entries for this store
+  await db.run(`DELETE FROM products WHERE store = '${storeName}'`);
+
   // Insert each product into the database
   const stmt = await db.prepare(`
-      INSERT OR REPLACE INTO products (name, description, img, price, store, week)
-      VALUES (?, ?, ?, ?, ?, ?)
+      INSERT OR REPLACE INTO products (name, description, img, price, url, store, week)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
     `);
 
   for (let product of products) {
@@ -30,8 +34,9 @@ async function storeScrapedData(weekNumber, storeName, products) {
       product.description,
       product.img,
       product.price,
+      product.url,
       storeName,
-      weekNumbe
+      weekNumber
     );
   }
 
@@ -54,7 +59,7 @@ async function productScraper({ url, selectors }) {
 
   await page.evaluate(async () => {
     await new Promise((resolve) => {
-      
+
       let totalHeight = 0;
       const distance = 100;
       const scrollDelay = 200;
@@ -68,7 +73,7 @@ async function productScraper({ url, selectors }) {
           clearInterval(timer);
           resolve();
         }
-        
+
       }, scrollDelay);
 
     });
@@ -82,7 +87,20 @@ async function productScraper({ url, selectors }) {
   for (let product of products) {
     const data = await product.evaluate((el, selectors) => {
 
+      let description = null;
+      let price = "";
+      let url = "";
+
       const name = el.querySelector(selectors.name).innerText.trim();
+
+      try {
+        if (el.href) {
+          url = el.href.trim();
+        } else {
+          url = el.querySelector(selectors.url).href.trim();
+        }
+      } catch { }
+
       let img = el.querySelector(selectors.image).src.trim();
 
       if (img.startsWith("data:image")) {
@@ -92,8 +110,6 @@ async function productScraper({ url, selectors }) {
         }
       }
 
-      let price = "";
-      let description = null;
 
       try {
         if (selectors.description) {
@@ -111,7 +127,7 @@ async function productScraper({ url, selectors }) {
         }
       } catch { }
 
-      return { name, price, img, description };
+      return { name, price, img, description, url };
 
     }, selectors);
 

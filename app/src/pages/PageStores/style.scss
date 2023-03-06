@@ -2,8 +2,12 @@
 
 
 .page-stores {
-    padding: 1rem;
 
+}
+
+.container-stores {
+    padding: 1rem;
+    overflow: auto;
 }
 
 @keyframes fade-in {

@@ -24,9 +24,13 @@ setInterval(() => {
 
 
 app.post('/deals', async (req, res) => {
-  const { products, stores, week } = req.body;
-  const result = await dealsFindAction(products, stores, week);
-  res.json(result);
+  try {
+    const { products, stores, week } = req.body;
+    const result = await dealsFindAction(products, stores, week);
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 app.get("/stores", async (req, res) => {
@@ -38,8 +42,12 @@ app.get("/stores", async (req, res) => {
 });
 
 app.get("/cron", async (req, res) => {
-  dealsScrapeAction();
-  res.json({ success: true });
+  try {
+    dealsScrapeAction();
+    res.json({ success: true });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 app.listen(PORT, () => {

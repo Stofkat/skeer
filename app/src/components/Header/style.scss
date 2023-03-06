@@ -1,0 +1,19 @@
+@import "style/index.scss";
+
+.header {
+  display: flex;
+  align-items: center;
+  background: $color-primary;
+  font-weight: 500;
+  z-index: 1;
+  min-height: 55px;
+  max-height: 55px;
+
+  .title {
+    margin: auto;
+    padding: 1rem;
+    font-weight: 400;
+    color: white;
+    font-size: 22px;
+  }
+}

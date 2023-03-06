@@ -6,9 +6,10 @@ const stores = [
     selectors: {
       product: ".product-grid-box",
       name: ".grid-box__headline",
-      price: ".m-price__price",
       image: ".product-grid-box__image",
       cookie: ".cookie-alert-extended-button",
+      url: "a",
+      price: ".m-price__price"
     }
   },
   {
@@ -21,6 +22,7 @@ const stores = [
       description: "[data-testhook=card-description] span",
       image: "picture [class^=promotion-card-image_img__]",
       cookie: "#accept-cookies",
+      url: "a",
       priceAlt: {
         dec: "[class^=promotion-price_root__] [class^=promotion-price_integer__]",
         fract: "[class^=promotion-price_root__] [class^=promotion-price_fractional__]",
@@ -36,6 +38,7 @@ const stores = [
       name: ".deka-product-card--info--title",
       image: "img",
       cookie: ".cookie button",
+      url: "a",
       priceAlt: {
         dec: ".price--before-decimal--offer",
         fract: "price--after-decimal--offer",
@@ -51,6 +54,7 @@ const stores = [
       name: ".product-card__name",
       image: ".product-card__image img",
       description: ".product-card__description",
+      url: "a",
       priceAlt: {
         dec: ".product-card__price__euros",
         fract: ".product-card__price__cents"
@@ -66,6 +70,7 @@ const stores = [
       name: ".mod-article-tile__title",
       image: ".cq-dd-image",
       description: ".mod-article-tile__brand",
+      url: "a",
       price: ".price__wrapper",
       // cookie: "[data-testid=uc-accept-all-button]"
 

@@ -11,6 +11,7 @@ import ModalAddProduct from "components/ModalAddProduct";
 import ModalConfirm from "components/ModalConfirm";
 
 import "./style.scss";
+import Header from "components/Header";
 
 const PageProducts = () => {
 
@@ -41,6 +42,7 @@ const PageProducts = () => {
 
   return (
     <div className="page-products">
+      <Header title="Producten" />
       <div className="scroll-list">
         {keys.map(key => {
           return (

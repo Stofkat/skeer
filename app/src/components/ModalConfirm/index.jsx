@@ -21,13 +21,13 @@ const ModalConfirm = ({
             <Button
               onClick={onCancel}
               secondary
-              label="Cancel"
+              label="Annuleren"
             />
           </div>
           <div className="col">
             <Button
               onClick={onConfirm}
-              label="Confirm"
+              label="Bevestigen"
             />
           </div>
         </div>

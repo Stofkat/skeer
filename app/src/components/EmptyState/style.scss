@@ -6,8 +6,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ccc;
+  color: #333;
   flex-direction: column;
+  opacity: 0.75;
 
   .empty-state-icon {
     width: 64px;

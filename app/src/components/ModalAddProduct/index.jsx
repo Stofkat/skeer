@@ -21,7 +21,7 @@ const ModalAddProduct = ({
         <p>Voeg een product toe om deze te controleren op aanbiedingen</p>
         <div className="spacer" />
         <InputText
-          label="Product naam (bvb kaas of heinz tomatenketchup "
+          placeholder="Bijv. Koffie of Calvé pindakaas "
           name="product"
           defaultValue={defaultValue}
           onChange={({target}) => setProductName(target.value)}
@@ -33,13 +33,13 @@ const ModalAddProduct = ({
             <Button
               onClick={onCancel}
               secondary
-              label="Cancel"
+              label="Annuleren"
             />
           </div>
           <div className="col">
             <Button
               onClick={()=> onConfirm(productName)}
-              label="Add"
+              label="Toevoegen"
             />
           </div>
         </div>

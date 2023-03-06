@@ -1,11 +1,13 @@
 @import "style/index.scss";
 
 .loader {
-  margin: auto;
   display: inline-block;
-  position: relative;
+  position: absolute;
   width: 80px;
   height: 80px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .loader div {

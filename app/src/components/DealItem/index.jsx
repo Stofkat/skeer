@@ -4,10 +4,15 @@ import "./style.scss";
 
 const DealItem = ({ deal }) => {
 
-  const { name, description, img, price, store } = deal;
+  const { name, description, img, price, url, store } = deal;
 
   return (
-    <div className="deal-item" >
+    <a
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+      className="deal-item"
+    >
       <div className="deal-image">
         {img ?
           <img className="image-product-placeholder" alt="product" src={img} /> :
@@ -34,7 +39,7 @@ const DealItem = ({ deal }) => {
           {store}
         </div>
       </div>
-    </div>
+    </a>
   );
 }
 
