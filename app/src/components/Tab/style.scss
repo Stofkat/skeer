@@ -26,7 +26,8 @@
       font-weight: 400;
       color: white;
       padding-left: 0.5rem;
-      font-size: 18px;
+      font-size: 16px;
+      text-transform: uppercase;
     }
 
     @include mobile {
@@ -55,8 +56,8 @@
 
       &:after {
         position: absolute;
-        left: -.5rem;
-        right: -.5rem;
+        left: 0;
+        right: 0;
         bottom: -14px;
         background-color: white;
         content: "";
@@ -67,7 +68,7 @@
 
     .label {
       @include mobile {
-        color: $color-primary;
+        color: $color-secondary;
       }
     }
 

@@ -49,6 +49,16 @@ label {
 
 }
 
+.logo {
+  font-size: 50px;
+  font-weight: 300;
+  font-family: "DancingTime";
+  color: white;
+  position: absolute;
+  left: 1rem;
+  top: 5px;
+}
+
 
 h1,
 h2,
@@ -114,15 +124,25 @@ p {
   width: 100%;
 }
 
+.footer {
+  height: 100px;
+  background-color: #777;
+  width: 100%;
+  @include mobile {
+    display: none;
+  }
+}
+
 .container-tabs {
   background-color: white;
   box-shadow: 0 -2px 5px -2px #444;
   z-index: 1;
   width: 100%;
   display: flex;
+  position: relative;
   @include tablet-up {
     background-color: $color-primary;
-    height: 55px;
+    height: 60px;
     justify-content: flex-end;
 
   }

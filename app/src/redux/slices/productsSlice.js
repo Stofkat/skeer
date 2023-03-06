@@ -14,7 +14,6 @@ export const productsSlice = createSlice({
     productAdd: (state, { payload: name }) => {
       const id = new Date().getTime();
       state.products[id] = { id, name };
-      state.empty = false;
     },
     productEdit: (state, { payload }) => {
       const { id, name } = payload;

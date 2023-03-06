@@ -32,6 +32,7 @@ const ProductItem = ({ product, onRemove }) => {
             fullWidth
             defaultValue={name}
             type="text"
+            autoFocus={name.length === 0}
             onChange={({ target }) => onEditProduct(target.value)}
           />
         </span>

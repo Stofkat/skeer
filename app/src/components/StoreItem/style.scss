@@ -1,17 +1,14 @@
+@import "style/index.scss";
+
 .store-item {
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
-  border-bottom: solid 1px #eee;
+  // border-bottom: solid 2px $color-secondary;
   background-color: white;
   border-radius: 8px;
-
-  &:hover {
-    background-color: #ddd;
-    cursor: pointer;
-  }
-
+  
   .store-icon {
     width: 32px;
     height: 32px;
