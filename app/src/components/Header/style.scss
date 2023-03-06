@@ -9,11 +9,15 @@
   min-height: 55px;
   max-height: 55px;
 
+  @include tablet-up {
+    display: none;
+  }
+
   .title {
     margin: auto;
     padding: 1rem;
     font-weight: 400;
     color: white;
-    font-size: 22px;
+    font-size: 18px;
   }
 }

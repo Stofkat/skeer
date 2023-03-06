@@ -31,6 +31,9 @@ const Tab = ({ label, highlighted, icon, path }) => {
           className="tab-icon"
           src={require(`assets/icons/${icon}${selected ? "-selected" : ""}.svg`)}
         />
+        <span className="label">
+          {label}
+        </span>
       </div>
     </IconButton>
 

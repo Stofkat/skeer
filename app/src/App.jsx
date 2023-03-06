@@ -13,6 +13,7 @@ import "./App.scss";
 const AppRoutes = () => {
 
   return (
+    <>
     <div className="App">
       <Router>
         <div className="container-content">
@@ -22,8 +23,9 @@ const AppRoutes = () => {
           <Route exact path="/deals" component={PageDeals} />
         </div>
         <div className="container-tabs">
+          <div className="container-tabs-inner">
           <Tab
-            label="Supermarkten"
+            label="Winkels"
             path="/stores"
             icon="stores"
           />
@@ -33,13 +35,15 @@ const AppRoutes = () => {
             icon="products"
           />
           <Tab
-            label="Deals"
+            label="Aanbiedingen"
             path="/deals"
             icon="deals"
           />
+          </div>
         </div>
       </Router>
     </div>
+    </>
   );
 }
 

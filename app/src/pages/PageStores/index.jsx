@@ -19,12 +19,15 @@ const PageStores = () => {
 
   return (
     <div className="page-stores">
-      <Header title="Winkels"/>
-      <div className="container-stores">
-        {Object.keys(stores).map((key) => {
-          const store = stores[key];
-          return (<StoreItem store={store} key={store.name} />);
-        })}
+      <Header title="Winkels" />
+      <div className="scroll-list">
+        <div className="scroll-list-inner">
+          <h2>Winkels bij jou in de buurt</h2>
+          {Object.keys(stores).map((key) => {
+            const store = stores[key];
+            return (<StoreItem store={store} key={store.name} />);
+          })}
+        </div>
       </div>
     </div>
 

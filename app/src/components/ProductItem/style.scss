@@ -11,26 +11,39 @@
   border-radius: 4px;
   padding: 1rem;
 
-  .product-image {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ddd;
-    overflow: hidden;
-
-    img {
-      width: 32px;
-      height: 32px;
-      object-fit: cover;
-    }
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
   }
 
   .name {
-    font-weight: 400;
     padding-right: 1rem;
+    flex:1;
+  }
+  input {
+    font-size: 18px;
+  }
+
+  .button-delete {
+    width: 20px;
+    height: 20px;
+    min-width: 16px;
+    min-height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #333;
+    border: solid 2px #333;
+    border-radius: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
   }
 
   .content {

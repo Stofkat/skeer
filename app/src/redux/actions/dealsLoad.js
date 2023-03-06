@@ -12,9 +12,12 @@ export const dealsLoad = () =>
 
     const stores = Object.keys(selected);
     const productsKeys = Object.keys(products);
-    const productNames =  productsKeys.map((key)=> {
-      return products[key].name;
-    })
+    const productNames = [];
+     productsKeys.forEach((key)=> {
+      if(products[key].name && products[key].name.length > 0){
+        productNames.push(products[key].name);
+      }
+    });
 
     const data = await apiCall(`${API_URL}/deals`, "POST", {
       stores,

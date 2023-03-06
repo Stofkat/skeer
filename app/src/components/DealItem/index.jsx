@@ -33,10 +33,10 @@ const DealItem = ({ deal }) => {
       </div>
       <div className="content-end">
         <div className="price">
-          {price}
+          {`€ ${price}`}
         </div>
         <div className="store">
-          {store}
+          <img className="store-icon" src={`/img/${store}.png`} alt="store icon" />
         </div>
       </div>
     </a>

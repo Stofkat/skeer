@@ -5,10 +5,9 @@ import { dealsLoad } from "redux/actions/dealsLoad";
 import DealItem from "components/DealItem";
 import Header from "components/Header";
 import Loader from "components/Loader";
-
-import "./style.scss";
 import EmptyState from "components/EmptyState";
 
+import "./style.scss";
 
 const PageStores = () => {
 
@@ -18,7 +17,6 @@ const PageStores = () => {
 
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(dealsLoad());
   }, [dispatch]);
@@ -27,7 +25,6 @@ const PageStores = () => {
   const dealKeys = Object.keys(deals);
   const hasProducts = Object.keys(products).length > 0;
   const hasStores = Object.keys(stores).length > 0;
-
 
   const renderInstructions = () => {
     return (
@@ -42,25 +39,26 @@ const PageStores = () => {
     return (
       <>
         {loading ? <Loader /> :
-            dealKeys.length > 0 ?
-              <div className="scroll-list">
+          dealKeys.length > 0 ?
+            <div className="scroll-list">
+              <div className="scroll-list-inner">
+                <h2>Aanbiedingen op basis van opgegeven criteria</h2>
                 {dealKeys.map((key) => {
                   const deal = deals[key];
                   return (<DealItem deal={deal} key={deal.name} />);
                 })}
-              </div> :
-              <EmptyState
-                icon={require("assets/icons/deals.svg").default}
-                text="Helaas, geen aanbiedingen gevonden :("
-              />
-          }
-        
+              </div>
+            </div> :
+            <EmptyState
+              icon={require("assets/icons/deals.svg").default}
+              text="Helaas, geen aanbiedingen gevonden :("
+            />
+        }
+
       </>
 
     );
   };
-
-
 
   return (
     <div className="page-deals">

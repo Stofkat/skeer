@@ -5,28 +5,25 @@ import { productAdd, productEdit, productRemove } from "redux/slices/productsSli
 
 import ProductItem from "components/ProductItem";
 import EmptyState from "components/EmptyState";
-import ButtonAdd from "components/ButtonAdd";
 
 import ModalAddProduct from "components/ModalAddProduct";
 import ModalConfirm from "components/ModalConfirm";
 
 import "./style.scss";
 import Header from "components/Header";
+import ButtonAnchorAdd from "components/ButtonAnchorAdd";
 
 const PageProducts = () => {
 
   const dispatch = useDispatch();
   const { products } = useSelector(state => state.products);
-  const [addProduct, setAddProduct] = useState(false);
-  const [editProduct, setEditProduct] = useState(false);
 
   const [removeProduct, setRemoveProduct] = useState(false);
 
   const keys = Object.keys(products);
 
-  const onAddProduct = (name) => {
-    dispatch(productAdd(name));
-    setAddProduct(false);
+  const onAddProduct = () => {
+    dispatch(productAdd(""));
   };
 
 
@@ -35,46 +32,31 @@ const PageProducts = () => {
     setRemoveProduct(false);
   };
 
-  const onEditProduct = (friendId) => {
-    dispatch(productEdit(friendId));
-  };
-
-
   return (
     <div className="page-products">
       <Header title="Producten" />
       <div className="scroll-list">
-        {keys.map(key => {
-          return (
-            <ProductItem
-              product={products[key]}
-              onRemove={(id) => setRemoveProduct(id)}
-              onEdit={(id) => setEditProduct(id)}
-              key={key}
-            />
-          );
-        })}
+        <div className="scroll-list-inner">
+        <h2>Producten in de watch-list</h2>
+          {keys.map(key => {
+            return (
+              <ProductItem
+                product={products[key]}
+                onRemove={(id) => setRemoveProduct(id)}
+                key={key}
+              />
+            );
+          })}
+          <ButtonAnchorAdd
+            label="Nog een product toevoegen"
+            onClick={onAddProduct}
+          />
+        </div>
       </div>
       {keys.length === 0 &&
         <EmptyState
           icon={require("assets/icons/products.svg").default}
           text="Voeg hier producten toe om te zien of ze in de aanbieding zijn"
-        />
-      }
-      <ButtonAdd onClick={() => setAddProduct(true)} />
-      {addProduct &&
-        <ModalAddProduct
-          onConfirm={(name) => {
-            if (addProduct) {
-              onAddProduct(name);
-            } else if (editProduct) {
-              onEditProduct(name);
-            }
-          }}
-          onCancel={() => {
-            setAddProduct(false);
-            setEditProduct(false);
-          }}
         />
       }
       {removeProduct &&

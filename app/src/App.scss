@@ -41,18 +41,12 @@ label {
   flex-direction: column;
   position: relative;
   justify-content: space-between;
+  align-items: center;
 
   @include tablet-up {
-    position: fixed;
-    height: 800px;
-    width: 420px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: solid 1px #ccc;
-    overflow: hidden;
-    border-radius: 16px;
+    flex-direction: column-reverse;
   }
+
 }
 
 
@@ -116,24 +110,54 @@ p {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 0;
+  overflow: hidden;
+  width: 100%;
 }
 
 .container-tabs {
-  display: flex;
-  justify-content: space-between;
   background-color: white;
   box-shadow: 0 -2px 5px -2px #444;
   z-index: 1;
+  width: 100%;
+  display: flex;
+  @include tablet-up {
+    background-color: $color-primary;
+    height: 55px;
+    justify-content: flex-end;
+
+  }
+
+  .container-tabs-inner {
+    display: flex;
+    @include mobile {
+      width: 100%;
+    }
+    justify-content: space-between;
+    @include tablet-up {
+      max-width: 720px;
+    }
+  }
+
+
+
+  @include mobile {
+    @media (max-height: 600px) {
+      display: none;
+    }
+  }
+
   .tab-group {
-    .MuiButtonBase-root  {
+    .MuiButtonBase-root {
       padding-left: 8px;
       padding-right: 8px;
     }
+
     display: flex;
     justify-content: space-between;
   }
+
 }
+
 
 .scroll-list {
   height: 100%;

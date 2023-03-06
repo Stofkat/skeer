@@ -1,0 +1,13 @@
+@import "style/index.scss";
+
+.button-anchor-add {
+  margin: auto;
+  color: #333;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
