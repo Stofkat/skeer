@@ -12,7 +12,7 @@ import "./style.scss";
 const PageStores = () => {
 
   const { deals, loading } = useSelector(state => state.deals);
-  const { products } = useSelector(state => state.products);
+  const { empty: productsEmpty } = useSelector(state => state.products);
   const { stores } = useSelector(state => state.stores);
 
   const dispatch = useDispatch();
@@ -23,8 +23,7 @@ const PageStores = () => {
 
 
   const dealKeys = Object.keys(deals);
-  const hasProducts = Object.keys(products).length > 0;
-  const hasStores = Object.keys(stores).length > 0;
+  const storesEmpty = !Object.keys(stores).length > 0;
 
   const renderInstructions = () => {
     return (
@@ -63,7 +62,7 @@ const PageStores = () => {
   return (
     <div className="page-deals">
       <Header title="Aanbiedingen" />
-      {!hasProducts || !hasStores ?
+      {productsEmpty || storesEmpty ?
         renderInstructions() :
         renderContent()
       }

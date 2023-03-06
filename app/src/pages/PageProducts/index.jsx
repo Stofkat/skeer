@@ -38,6 +38,7 @@ const PageProducts = () => {
       <div className="scroll-list">
         <div className="scroll-list-inner">
         <h2>Producten in de watch-list</h2>
+        <p>Voeg hier producten toe waarvan je aanbiedingen in de gaten wilt houden</p>
           {keys.map(key => {
             return (
               <ProductItem
