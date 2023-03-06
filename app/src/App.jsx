@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import PageStores from "pages/PageStores";
@@ -17,7 +17,12 @@ const AppRoutes = () => {
       <div className="App">
         <Router>
           <footer className="footer">
-            Skeer is een product door Noka Development.
+            <div className="footer-links">
+              <Link to="privacy">Privacy</Link>
+              <Link to="privacy">Over ons</Link>
+              <Link to="privacy">Contact</Link>
+            </div>
+            <span className="developed-by">Skeer is een product door Noka Development.</span>
           </footer>
           <div className="container-content">
             <Route exact path="/" component={PageStores} />
