@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import { productAdd, productEdit, productRemove } from "redux/slices/productsSlice";
+import { productAdd, productRemove } from "redux/slices/productsSlice";
 
 import ProductItem from "components/ProductItem";
 import EmptyState from "components/EmptyState";
-
-import ModalAddProduct from "components/ModalAddProduct";
 import ModalConfirm from "components/ModalConfirm";
+import ButtonAnchorAdd from "components/ButtonAnchorAdd";
+import Button from "components/Button";
 
 import "./style.scss";
-import Header from "components/Header";
-import ButtonAnchorAdd from "components/ButtonAnchorAdd";
 
 const PageProducts = () => {
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const { products } = useSelector(state => state.products);
 
   const [removeProduct, setRemoveProduct] = useState(false);
@@ -34,13 +34,16 @@ const PageProducts = () => {
 
   return (
     <div className="page-products">
-      <div className="scroll-list">
-        <div className="scroll-list-inner">
+      <div className="explanation">
         <h2>Producten in de watch-list</h2>
         <p>Voeg hier producten toe waarvan je aanbiedingen in de gaten wilt houden.
           Let op: we zoeken exact dus 'kaas' heeft bijvoorbeeld andere resultaten dan 'kazen'.
           We zijn dit aan het verbeteren!
         </p>
+      </div>
+      <div className="scroll-list">
+        <div className="scroll-list-inner">
+
           {keys.map(key => {
             return (
               <ProductItem
@@ -70,6 +73,15 @@ const PageProducts = () => {
           onCancel={() => setRemoveProduct(false)}
         />
       }
+      <div className="container-buttons">
+        <Button
+          secondary
+          label="Vorige"
+          onClick={() => { history.push("/stores") }}
+        />
+        <Button label="Volgende" onClick={() => { history.push("/deals") }}
+        />
+      </div>
     </div>
   );
 };

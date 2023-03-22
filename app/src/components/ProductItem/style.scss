@@ -37,15 +37,15 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #333;
-    border: solid 2px #333;
+    color: $color-primary;
+    border: solid 2px $color-primary;
     border-radius: 16px;
     font-weight: 500;
     cursor: pointer;
     
     &:hover {
-      border-color: $color-primary;
-      color: $color-primary;
+      border-color: $color-secondary;
+      color: $color-secondary;
     }
   }
 

@@ -20,8 +20,8 @@ const AppRoutes = () => {
       <div className="App">
         <Router>
           <Header title="Winkels" />
-          <Steps />
           <div className="container-content">
+            <Steps />
             <Route exact path="/" component={PageStores} />
             <Route exact path="/stores" component={PageStores} />
             <Route exact path="/products" component={PageProducts} />
@@ -29,14 +29,7 @@ const AppRoutes = () => {
             <Route exact path="/privacy" component={PagePrivacy} />
           </div>
           {/* <span className="logo">Skeer</span> */}
-          <footer className="footer">
-            <div className="footer-links">
-              <Link to="privacy">Privacy</Link>
-              <Link to="privacy">Over ons</Link>
-              <Link to="privacy">Contact</Link>
-            </div>
-            <span className="developed-by">Skeer is een product door Noka Development.</span>
-          </footer>
+
         </Router>
       </div>
     </>

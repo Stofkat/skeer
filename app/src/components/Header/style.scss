@@ -9,6 +9,9 @@
   min-height: 55px;
   max-height: 55px;
   width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  ;
 
   @include tablet-up {
     background-color: white;
@@ -18,11 +21,43 @@
     font-size: 50px;
     font-weight: 300;
     font-family: "DancingTime";
-    color: white;
-    position: absolute;
-    left: 1rem;
+    padding-left: 1rem;
     top: 5px;
     color: $color-primary;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .mobile-stub {
+    @include tablet-up {
+      display: none;
+    }
+  }
+
+  .menu-link {
+    margin-right: 1rem;
+    color: $color-primary;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 17px;
+
+    &:hover {
+      border-bottom: solid 2px $color-secondary;
+    }
+  }
+
+  .links {
+
+    @include mobile {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: none;
+    }
   }
 
   .title {
@@ -35,6 +70,6 @@
     @include tablet-up {
       display: none;
     }
-    
+
   }
 }

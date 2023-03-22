@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { TextField } from "@material-ui/core";
 
 import { productEdit, productRemove } from "redux/slices/productsSlice";
@@ -12,6 +12,13 @@ const ProductItem = ({ product, onRemove }) => {
 
   const { name, id } = product;
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (name.length === 0) {
+      inputRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  });
 
   const onEditProduct = (newValue) => {
     dispatch(productEdit({ name: newValue, id }));
@@ -20,7 +27,7 @@ const ProductItem = ({ product, onRemove }) => {
   const onRemoveProduct = () => {
     dispatch(productRemove(id));
   };
-  
+
 
   return (
     <div className="product-item" >
@@ -28,6 +35,7 @@ const ProductItem = ({ product, onRemove }) => {
       <div className="content">
         <span className="name">
           <TextField
+            ref={inputRef}
             placeholder="Productnaam (bijv. pindakaas)"
             fullWidth
             defaultValue={name}

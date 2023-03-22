@@ -39,16 +39,20 @@ const PageStores = () => {
       <>
         {loading ? <Loader /> :
           dealKeys.length > 0 ?
-            <div className="scroll-list">
-              <div className="scroll-list-inner">
-                <h2>Aanbiedingen op basis van opgegeven criteria</h2>
+            <>
+              <div className="explanation">
+                <h2>Jouw aanbiedingen</h2>
                 <p>Hier zijn alle aanbiedingen die we konden vinden op basis van de door jou opgegeven criteria</p>
-                {dealKeys.map((key) => {
-                  const deal = deals[key];
-                  return (<DealItem deal={deal} key={deal.name} />);
-                })}
               </div>
-            </div> :
+              <div className="scroll-list">
+                <div className="scroll-list-inner">
+                  {dealKeys.map((key) => {
+                    const deal = deals[key];
+                    return (<DealItem deal={deal} key={deal.name} />);
+                  })}
+                </div>
+              </div>
+            </> :
             <EmptyState
               icon={require("assets/icons/deals.svg").default}
               text="Helaas, geen aanbiedingen gevonden :("

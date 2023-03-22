@@ -12,7 +12,30 @@
   h2 {
     margin-left: auto;
     margin-right: auto;
-    max-width: 720px;
+    max-width: 640px;
+  }
+
+    .explanation {
+    margin-top: 0.5rem;
+    @include tablet-up {
+      margin-top: 2rem;
+    }
+    box-shadow: 0 8px 26px -26px grey;
+    background: white;
+    z-index: 5;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-top: 0;
+    }
   }
 
   .scroll-list {
@@ -21,7 +44,7 @@
     overflow-y: auto;
     flex: 1;
     .scroll-list-inner {
-        max-width: 720px;
+        max-width: 640px;
         margin-left: auto;
         margin-right: auto;
     }
