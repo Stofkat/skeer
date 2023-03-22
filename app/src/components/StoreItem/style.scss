@@ -3,12 +3,15 @@
 .store-item {
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   padding: 0.5rem;
   // border-bottom: solid 2px $color-secondary;
   background-color: white;
   border-radius: 8px;
-  
+  text-align: start;
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+
   .store-icon {
     width: 32px;
     height: 32px;

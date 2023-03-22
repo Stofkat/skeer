@@ -6,9 +6,12 @@ import PageStores from "pages/PageStores";
 import PageDeals from "pages/PageDeals";
 import PageProducts from "pages/PageProducts";
 
-import Tab from "components/Tab";
+import Tab from "components/Step";
 
 import "./App.scss";
+import PagePrivacy from "pages/PagePrivacy";
+import Header from "components/Header";
+import Steps from "components/Steps";
 
 const AppRoutes = () => {
 
@@ -16,6 +19,16 @@ const AppRoutes = () => {
     <>
       <div className="App">
         <Router>
+          <Header title="Winkels" />
+          <Steps />
+          <div className="container-content">
+            <Route exact path="/" component={PageStores} />
+            <Route exact path="/stores" component={PageStores} />
+            <Route exact path="/products" component={PageProducts} />
+            <Route exact path="/deals" component={PageDeals} />
+            <Route exact path="/privacy" component={PagePrivacy} />
+          </div>
+          {/* <span className="logo">Skeer</span> */}
           <footer className="footer">
             <div className="footer-links">
               <Link to="privacy">Privacy</Link>
@@ -24,32 +37,6 @@ const AppRoutes = () => {
             </div>
             <span className="developed-by">Skeer is een product door Noka Development.</span>
           </footer>
-          <div className="container-content">
-            <Route exact path="/" component={PageStores} />
-            <Route exact path="/stores" component={PageStores} />
-            <Route exact path="/products" component={PageProducts} />
-            <Route exact path="/deals" component={PageDeals} />
-          </div>
-          <div className="container-tabs">
-            <span className="logo">Skeer</span>
-            <div className="container-tabs-inner">
-              <Tab
-                label="Winkels"
-                path="/stores"
-                icon="stores"
-              />
-              <Tab
-                label="Producten"
-                path="/products"
-                icon="products"
-              />
-              <Tab
-                label="Aanbiedingen"
-                path="/deals"
-                icon="deals"
-              />
-            </div>
-          </div>
         </Router>
       </div>
     </>

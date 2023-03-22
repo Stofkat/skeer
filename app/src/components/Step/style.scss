@@ -1,0 +1,47 @@
+@import "style/index.scss";
+
+
+.container-steps-inner {
+  .MuiButtonBase-root {
+    &:not(:last-child):after {
+      content: "";
+      position: absolute;
+      right: -34px;
+      width: 46px;
+      height: 2px;
+      background-color: $color-primary;
+    }
+  }
+}
+
+.step {
+  position: relative;
+  display: flex;
+  margin-left: 20px;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  color: lightgray;
+  border: solid 2px $color-primary;
+  border-radius: 28px;
+
+  .tab-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &.selected {
+    background-color: $color-primary;
+    color: white;
+  }
+
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+}

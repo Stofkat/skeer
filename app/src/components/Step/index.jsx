@@ -7,14 +7,14 @@ import { useHistory, useLocation } from "react-router-dom";
 import "./style.scss";
 
 
-const Tab = ({ label, highlighted, icon, path }) => {
+const Step = ({ label, highlighted, icon, path }) => {
 
   const { pathname } = useLocation();
   const history = useHistory();
 
   const selected = pathname.startsWith(path);
-  const tabClasses = classNames(
-    "tab",
+  const stepClasses = classNames(
+    "step",
     highlighted && "highlighted",
     selected && "selected"
   )
@@ -25,19 +25,17 @@ const Tab = ({ label, highlighted, icon, path }) => {
     >
       <div
         onClick={() => history.push(path)}
-        className={tabClasses}
+        className={stepClasses}
       >
         <img
           className="tab-icon"
+          alt="step"
           src={require(`assets/icons/${icon}${selected ? "-selected" : ""}.svg`)}
         />
-        <span className="label">
-          {label}
-        </span>
       </div>
     </IconButton>
 
   );
 }
 
-export default Tab;
+export default Step;

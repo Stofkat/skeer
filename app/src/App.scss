@@ -36,27 +36,12 @@ label {
 .App {
   flex: 1;
   height: 100%;
-  background-color: #f1f1f1;
+  background-color: #fdfdfd;
   display: flex;
   flex-direction: column;
   position: relative;
   justify-content: space-between;
   align-items: center;
-
-  @include tablet-up {
-    flex-direction: column-reverse;
-  }
-
-}
-
-.logo {
-  font-size: 50px;
-  font-weight: 300;
-  font-family: "DancingTime";
-  color: white;
-  position: absolute;
-  left: 1rem;
-  top: 5px;
 }
 
 
@@ -74,6 +59,9 @@ h1 {
 h2 {
   font-size: 20px;
   margin-bottom: 1rem;
+  @include tablet-up {
+    font-size: 32px;
+  }
 }
 
 h3 {
@@ -84,6 +72,9 @@ h3 {
 span,
 p {
   font-size: 17px;
+  @include tablet-up {
+    font-size: 19px;
+  }
 }
 
 .stats {
@@ -156,56 +147,11 @@ p {
   }
 }
 
-.container-tabs {
-  background-color: white;
-  box-shadow: 0 -2px 5px -2px #444;
-  z-index: 1;
-  width: 100%;
-  display: flex;
-  position: relative;
-  @include tablet-up {
-    background-color: $color-primary;
-    height: 60px;
-    justify-content: flex-end;
-
-  }
-
-  .container-tabs-inner {
-    display: flex;
-    @include mobile {
-      width: 100%;
-    }
-    justify-content: space-between;
-    @include tablet-up {
-      max-width: 720px;
-    }
-  }
-
-
-
-  @include mobile {
-    @media (max-height: 600px) {
-      display: none;
-    }
-  }
-
-  .tab-group {
-    .MuiButtonBase-root {
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-
-    display: flex;
-    justify-content: space-between;
-  }
-
-}
-
 
 .scroll-list {
   height: 100%;
   overflow-y: auto;
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 
 

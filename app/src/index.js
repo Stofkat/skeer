@@ -16,7 +16,7 @@ import "./index.css";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#f34748", //this overide blue color
+      main: "#66892e", //this overide blue color
       light: "#ddd", //overides light blue
       dark: "#333", //overides dark blue color
     },

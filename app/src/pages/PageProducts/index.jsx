@@ -34,11 +34,13 @@ const PageProducts = () => {
 
   return (
     <div className="page-products">
-      <Header title="Producten" />
       <div className="scroll-list">
         <div className="scroll-list-inner">
         <h2>Producten in de watch-list</h2>
-        <p>Voeg hier producten toe waarvan je aanbiedingen in de gaten wilt houden.</p>
+        <p>Voeg hier producten toe waarvan je aanbiedingen in de gaten wilt houden.
+          Let op: we zoeken exact dus 'kaas' heeft bijvoorbeeld andere resultaten dan 'kazen'.
+          We zijn dit aan het verbeteren!
+        </p>
           {keys.map(key => {
             return (
               <ProductItem

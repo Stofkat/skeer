@@ -1,0 +1,28 @@
+@import "style/index.scss";
+
+.container-steps {
+  background-color: white;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  position: relative;
+  background-color: #fff;
+  margin-top: 1rem;
+
+  .container-steps-inner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tab-group {
+    .MuiButtonBase-root {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+}

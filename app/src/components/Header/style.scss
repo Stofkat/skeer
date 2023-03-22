@@ -8,9 +8,21 @@
   z-index: 1;
   min-height: 55px;
   max-height: 55px;
+  width: 100%;
 
   @include tablet-up {
-    display: none;
+    background-color: white;
+  }
+
+  .logo {
+    font-size: 50px;
+    font-weight: 300;
+    font-family: "DancingTime";
+    color: white;
+    position: absolute;
+    left: 1rem;
+    top: 5px;
+    color: $color-primary;
   }
 
   .title {
@@ -19,5 +31,10 @@
     font-weight: 400;
     color: white;
     font-size: 18px;
+
+    @include tablet-up {
+      display: none;
+    }
+    
   }
 }

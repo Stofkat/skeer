@@ -1,12 +1,24 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 import "./style.scss";
 
-const Header = ({ title }) => {
+const titles = {
+  "/deals": "Aanbiedingen (3/3)",
+  "/products": "Producten (2/3)",
+  "/stores": "Winkels (1/3)"
+};
+
+const Header = () => {
+
+  const { pathname } = useLocation();
+
+  const title = titles[pathname];
 
   return (
     <div className="header">
-      <span className="title">{title}</span>
+      <span className="logo">Skeer</span>
+      {title && <span className="title">{title}</span>}
     </div>
   );
 }

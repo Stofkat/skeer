@@ -42,6 +42,7 @@ const PageStores = () => {
             <div className="scroll-list">
               <div className="scroll-list-inner">
                 <h2>Aanbiedingen op basis van opgegeven criteria</h2>
+                <p>Hier zijn alle aanbiedingen die we konden vinden op basis van de door jou opgegeven criteria</p>
                 {dealKeys.map((key) => {
                   const deal = deals[key];
                   return (<DealItem deal={deal} key={deal.name} />);
@@ -61,7 +62,6 @@ const PageStores = () => {
 
   return (
     <div className="page-deals">
-      <Header title="Aanbiedingen" />
       {productsEmpty || storesEmpty ?
         renderInstructions() :
         renderContent()
