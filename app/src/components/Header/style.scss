@@ -3,15 +3,14 @@
 .header {
   display: flex;
   align-items: center;
-  background: $color-primary;
+  justify-content: space-between;
+  align-items: center;
   font-weight: 500;
-  z-index: 1;
   min-height: 55px;
   max-height: 55px;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  ;
+  background: $color-primary;
+  z-index: 1;
 
   @include tablet-up {
     background-color: white;
@@ -20,9 +19,9 @@
   .logo {
     font-size: 50px;
     font-weight: 300;
-    font-family: "DancingTime";
     padding-left: 1rem;
     top: 5px;
+    font-family: "DancingTime";
     color: $color-primary;
 
     @include mobile {
@@ -38,10 +37,10 @@
 
   .menu-link {
     margin-right: 1rem;
-    color: $color-primary;
     text-transform: uppercase;
     text-decoration: none;
     font-size: 17px;
+    color: $color-primary;
 
     &:hover {
       border-bottom: solid 2px $color-secondary;
@@ -49,7 +48,6 @@
   }
 
   .links {
-
     @include mobile {
       position: fixed;
       top: 0;
@@ -70,6 +68,5 @@
     @include tablet-up {
       display: none;
     }
-
   }
 }

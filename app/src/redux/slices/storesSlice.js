@@ -9,7 +9,6 @@ const initialState = {
 export const storesSlice = createSlice({
   name: "stores",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     storesLoading: (state) => {
       state.loading = true;
@@ -33,6 +32,5 @@ export const {
   storeSelected,
   storeDeselected
 } = storesSlice.actions;
-
 
 export default storesSlice.reducer;

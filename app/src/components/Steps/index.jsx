@@ -15,8 +15,6 @@ const Steps = () => {
 
   const { pathname } = useLocation();
 
-  console.log("pathname",pathname);
-
   if (display.includes(pathname)) {
     return (
       <div className="container-steps">

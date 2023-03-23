@@ -4,7 +4,6 @@ import apiCall from "helpers/apiCall";
 
 export const dealsLoad = () =>
   async (dispatch, getState) => {
-
     dispatch(dealsLoading());
 
     const { products } = getState().products;
@@ -13,8 +12,9 @@ export const dealsLoad = () =>
     const stores = Object.keys(selected);
     const productsKeys = Object.keys(products);
     const productNames = [];
-     productsKeys.forEach((key)=> {
-      if(products[key].name && products[key].name.length > 0){
+    
+    productsKeys.forEach((key) => {
+      if (products[key].name && products[key].name.length > 0) {
         productNames.push(products[key].name);
       }
     });

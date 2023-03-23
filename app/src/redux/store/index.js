@@ -8,12 +8,10 @@ import storesReducer from "../slices/storesSlice";
 import dealsReducer from "../slices/dealsSlice";
 import productsReducer from "../slices/productsSlice";
 
-
 const reducers = combineReducers({
   stores: storesReducer,
   products: productsReducer,
-  deals: dealsReducer,
-
+  deals: dealsReducer
 });
 
 const persistConfig = {
@@ -23,7 +21,6 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
-
 
 const store = configureStore({
   reducer: persistedReducer,

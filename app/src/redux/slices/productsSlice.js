@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const placeholderId = new Date().getTime();
+
 const initialState = {
   products: { [placeholderId]: { id: placeholderId, name: "" } },
   loading: false,

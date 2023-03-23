@@ -22,10 +22,11 @@
 
   .name {
     padding-right: 1rem;
-    flex:1;
+    flex: 1;
   }
+
   input {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .button-delete {
@@ -42,7 +43,7 @@
     border-radius: 16px;
     font-weight: 500;
     cursor: pointer;
-    
+
     &:hover {
       border-color: $color-secondary;
       color: $color-secondary;

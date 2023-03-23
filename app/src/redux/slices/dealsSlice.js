@@ -8,7 +8,6 @@ const initialState = {
 export const dealsSlice = createSlice({
   name: "deals",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     dealsLoading: (state) => {
       state.loading = true;
@@ -24,6 +23,5 @@ export const {
   dealsLoading,
   dealsLoaded,
 } = dealsSlice.actions;
-
 
 export default dealsSlice.reducer;
