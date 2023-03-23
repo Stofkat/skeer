@@ -1,6 +1,10 @@
 .page-privacy {
+  overflow: auto;
+
+.content {
   max-width: 640px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 2rem;
+}
 }
