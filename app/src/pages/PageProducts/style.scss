@@ -10,9 +10,11 @@
 
   .explanation {
     margin-top: 0.5rem;
+
     @include tablet-up {
       margin-top: 2rem;
     }
+
     box-shadow: 0 8px 26px -26px grey;
     background: white;
     z-index: 5;
@@ -30,6 +32,18 @@
       margin-top: 0;
     }
   }
+
+  @media (max-height: 600px) {
+    .container-buttons {
+      display: none;
+    }
+
+    .explanation {
+      display: none;
+    }
+
+  }
+
 
   h2 {
     margin-left: auto;

@@ -12,11 +12,11 @@ const PagePrivacy = () => {
         We werken aan de mogelijkheid om deze gegevens aan een persoonlijk account te koppelen, zodat je push notificaties
         kan instellen voor bepaalde producten.
         <br /><br />
-        Skeer is een app door Stofkat/Noka Development, wij hechten veel waarde aan de privacy van onze gebruikers bij al onze apps.
-        Mocht je vragen hebben of je zorgen maken over je gegevens stuur dan gerust een email naar dirk@noka.dev.
-        <br /><br />
         Dit is volledig optioneel. We vinden het zelf ook niet prettig als onze gegevens ongevraagd worden opgeslagen en doen dus ook zelf niet.
         <br /><br />
+        Skeer is een app door Stofkat/Noka Development, wij hechten veel waarde aan de privacy van onze gebruikers bij al onze apps.
+        Mocht je vragen hebben of je zorgen maken over je gegevens stuur dan gerust een email naar dirk@noka.dev.
+              <br /><br />
         Ok doei.
         <br /><br />
         <br /><br />
@@ -28,10 +28,10 @@ const PagePrivacy = () => {
         <br /><br />
         We are working on the possibility of linking this data to a personal account, so that you can set up push notifications for certain products.
         <br /><br />
+        This is completely optional. We also do not like it when our data is stored without our consent, so we do not do it ourselves.
+        <br /><br />
         Skeer is an app by Stofkat/Noka Development, and we value the privacy of our users for all our apps.
         If you have any questions or concerns about your data, please feel free to email dirk@noka.dev.
-        <br /><br />
-        This is completely optional. We also do not like it when our data is stored without our consent, so we do not do it ourselves.
         <br /><br />
         Okay, bye
         <br /><br />
