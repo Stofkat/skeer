@@ -50,12 +50,26 @@ async function productScraper({ url, selectors }) {
   });
 
   const page = await browser.newPage();
+  //await page.setRequestInterception(true);
+
+  // page.on("request", (req) => {
+  //     if(req.resourceType() == "font" || req.resourceType() == "image"){
+  //         req.abort();
+  //     }
+  //     else {
+  //         req.continue();
+  //     }
+  // });
+
   await page.goto(url);
 
   if (selectors.cookie) {
-    await page.waitForSelector(selectors.cookie);
-    await page.click(selectors.cookie);
+    try {
+      await page.waitForSelector(selectors.cookie);
+      await page.click(selectors.cookie);
+    } catch { }
   }
+
 
   await page.evaluate(async () => {
     await new Promise((resolve) => {
@@ -79,6 +93,7 @@ async function productScraper({ url, selectors }) {
     });
   });
 
+
   await page.waitForSelector(selectors.product, { timeout: 10000 });
 
   const products = await page.$$(selectors.product);
@@ -90,8 +105,20 @@ async function productScraper({ url, selectors }) {
       let description = null;
       let price = "";
       let url = "";
+      let img = "";
+      let name = "";
 
-      const name = el.querySelector(selectors.name).innerText.trim();
+
+      console.log("element", el);
+
+
+      try {
+        console.log("getting name");
+        name = el.querySelector(selectors.name).innerText.trim();
+        console.log("name", name);
+      } catch (error) {
+        console.error(error);
+      }
 
       try {
         if (el.href) {
@@ -100,15 +127,17 @@ async function productScraper({ url, selectors }) {
           url = el.querySelector(selectors.url).href.trim();
         }
       } catch { }
+      try {
 
-      let img = el.querySelector(selectors.image).src.trim();
+        img = el.querySelector(selectors.image).src.trim();
 
-      if (img.startsWith("data:image")) {
-        img = el.querySelector(selectors.image).getAttribute("srcset")?.trim();
-        if (!img) {
-          img = el.querySelector(selectors.image).getAttribute("data-src")?.trim();
+        if (img.startsWith("data:image")) {
+          img = el.querySelector(selectors.image).getAttribute("srcset")?.trim();
+          if (!img) {
+            img = el.querySelector(selectors.image).getAttribute("data-src")?.trim();
+          }
         }
-      }
+      } catch { }
 
 
       try {
@@ -125,7 +154,7 @@ async function productScraper({ url, selectors }) {
           const priceFract = el.querySelector(selectors.priceAlt.fract).innerText.trim();
           price = `${priceDec}${priceFract}`;
         }
-      } catch { }
+      } catch { price = "n.a." }
 
       return { name, price, img, description, url };
 
@@ -134,7 +163,9 @@ async function productScraper({ url, selectors }) {
     productsParsed.push(data);
   }
 
-  await browser.close();
+  console.log("productsParsed", productsParsed);
+
+  // await browser.close();
 
   return productsParsed;
 

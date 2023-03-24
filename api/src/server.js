@@ -4,7 +4,7 @@ import stores from "./constants/stores.js";
 import dealsFindAction from "./actions/dealsFindAction.js";
 import dealsScrapeAction from "./actions/dealsScrapeAction.js";
 
-const PORT = 1337;
+const PORT = 1338;
 
 const app = express();
 
@@ -28,6 +28,8 @@ app.post('/deals', async (req, res) => {
     const { products, stores, week } = req.body;
     const result = await dealsFindAction(products, stores, week);
     res.json(result);
+    console.log(result);
+
   } catch (error) {
     console.error(error);
   }
@@ -53,3 +55,31 @@ app.get("/cron", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+
+// const options = {
+//   // isCaseSensitive: false,
+//   // includeScore: false,
+//   // shouldSort: true,
+//   // includeMatches: false,
+//   // findAllMatches: false,
+//   // minMatchCharLength: 1,
+//   // location: 0,
+//    threshold: 0.3,
+//   	distance: 200,
+//    useExtendedSearch: true,
+//    ignoreLocation: true,
+//   // ignoreFieldNorm: false,
+//   // fieldNormWeight: 1,
+//   keys: [
+//     "name",
+//     "description"
+//   ]
+// };
+
+// const fuse = new Fuse(list, options);
+
+// // Change the pattern
+// const pattern = "plakken kaas"
+
+// return fuse.search(pattern)
