@@ -46,7 +46,7 @@ async function storeScrapedData(weekNumber, storeName, products) {
   await stmt.finalize();
 }
 
-async function productScraper({ url, selectors }) {
+async function productScraper({ url, selectors, parseWhileScrolling }) {
 
   let pageFullyScrolled = false;
   const productsParsed = {};
@@ -78,7 +78,6 @@ async function productScraper({ url, selectors }) {
     });
   }
 
-
   const device = {
     userAgent: 'Mozilla/5.0 (Macintosh)',
     viewport: {
@@ -99,42 +98,36 @@ async function productScraper({ url, selectors }) {
     platform: device.platform,
   });
 
-
-
   puppeteer.use(pluginUserAgentOverride);
-
 
   const browser = await puppeteer.launch({
     headless: false,
     args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--shm-size=1gb'
-    ],
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      // "--disable-blink-features=AutomationControlled"
+  ],
+  // ignoreDefaultArgs: ["--enable-automation"],
+  // headless: "new",
     executablePath: executablePath()
   });
 
   const page = await browser.newPage();
   await page.evaluateOnNewDocument(preload, device);
-
-  await page.setRequestInterception(true);
-
-  page.on("request", (req) => {
-    if (req.resourceType() == "font" || req.resourceType() == "image") {
-      req.abort();
-    }
-    else {
-      req.continue();
-    }
-  });
-
-
   await page.goto(url);
+  await page.waitForSelector(selectors.product);
 
+  // await page.setRequestInterception(true);
 
-  // await page.screenshot({
-  //   path: 'screenshot.jpg'
+  // page.on("request", (req) => {
+  //   if (req.resourceType() == "font" || req.resourceType() == "image") {
+  //     req.abort();
+  //   }
+  //   else {
+  //     req.continue();
+  //   }
   // });
+
 
   if (selectors.cookie) {
     try {
@@ -143,20 +136,19 @@ async function productScraper({ url, selectors }) {
     } catch { }
   }
 
-
-
   const parseThePage = async () => {
-
     let products = [];
+
     try {
+      console.log("Getting all products");
       products = await page.$$(selectors.product);
+
     } catch (error) {
       console.error("Could not find products", error);
     }
 
     for (let product of products) {
       const data = await product.evaluate((el, selectors) => {
-
         let description = null;
         let price = "";
         let url = "";
@@ -170,6 +162,7 @@ async function productScraper({ url, selectors }) {
         try {
           if (el.href) {
             url = el.href.trim();
+
           } else {
             url = el.querySelector(selectors.url).href.trim();
           }
@@ -180,12 +173,10 @@ async function productScraper({ url, selectors }) {
 
           if (img.startsWith("data:image") || img.endsWith("svg")) {
             img = el.querySelector(selectors.image).getAttribute("srcset")?.trim();
-
-            if (!img) {
+            if (!img || img.endsWith("svg")) {
               img = el.querySelector(selectors.image).getAttribute("data-src")?.trim();
             }
-
-            if (!img) {
+            if (!img || img.endsWith("svg")) {
               img = el.querySelector(selectors.image).getAttribute("data-srcset")?.trim();
             }
           }
@@ -205,80 +196,67 @@ async function productScraper({ url, selectors }) {
             const priceFract = el.querySelector(selectors.priceAlt.fract).innerText.trim();
             price = `${priceDec}${priceFract}`;
           }
-        } catch { price = "n.a." }
-
+        } catch { price = "n.a."; }
+        console.log({ name, price, img, description, url });
         return { name, price, img, description, url };
 
       }, selectors);
 
       productsParsed[data.name + data.description] = data;
 
-
     }
   }
 
   const moveThePage = async (scrolledHeight) => {
     return await page.evaluate(async (scrolledHeight) => {
-      const distance = 500;
-
-  
       return await new Promise((resolve, reject) => {
-
         try {
+          setTimeout(() => {
+            const distance = 500;
+            const newPageHeight = document.body.offsetHeight;
+            const newScrolledHeight = scrolledHeight + distance;
 
-          let newPageHeight = document.body.offsetHeight;
-          window.scrollBy(0, distance);
-    
-          let newScrolledHeight = scrolledHeight;
+            window.scrollBy(0, distance);
 
-          newScrolledHeight += distance;
+            resolve({ newScrolledHeight, newPageHeight });
 
-          resolve({ newScrolledHeight, newPageHeight });
+          }, 100);
 
         } catch (error) {
-          console.error(document.body);
-          reject(document.body);
+          reject(error);
         }
       });
 
     }, scrolledHeight);
   }
 
-
-
   let scrolledHeight = 0;
   let pageHeight = 100;
 
-
   while (pageHeight >= scrolledHeight) {
-    console.log("Scraping page");
-    await parseThePage();
-    console.log("Scrolling page", { scrolledHeight, pageHeight });
     const result = await moveThePage(scrolledHeight);
-
-    console.log("result", result);
     const { newScrolledHeight, newPageHeight } = result;
 
     scrolledHeight = newScrolledHeight;
     pageHeight = newPageHeight;
 
-    console.log("scrolled height", scrolledHeight);
-    console.log("page height", pageHeight);
-    console.log("is scroll height bigger than page height", scrolledHeight > pageHeight);
+    if (parseWhileScrolling) {
+      await parseThePage();
+    }
   }
 
+  // then parse
+  if (!parseWhileScrolling) {
+    await parseThePage();
+  }
 
-
-  console.log("Done with store.");
-
-  await browser.close();
+ // await browser.close();
 
   const productKeys = Object.keys(productsParsed)
 
   return productKeys.map((key) => {
     return productsParsed[key];
   });
-
 
 };
 
@@ -293,9 +271,9 @@ async function dealsScrapeAction() {
     storesToScrape = testStores;
   }
 
-  for (const index in stores) {
+  for (const index in storesToScrape) {
     try {
-      const store = stores[index];
+      const store = storesToScrape[index];
       const products = await productScraper(store);
 
       // Only write on a succesful scrape

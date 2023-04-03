@@ -99,6 +99,8 @@ const stores = [
   {
     name: "coop",
     label: "Coop",
+    // scrollDistance: 500,
+    parseWhileScrolling: true,
     url: "https://www.coop.nl/aanbiedingen/",
     selectors: {
       product: "custom-promotion-card",
@@ -109,6 +111,22 @@ const stores = [
       price: "[data-testing-id=current-price]"
     }
   },
+  {
+    name: "vomar",
+    label: "Vomar",
+    url: "https://www.folderz.nl/winkels/vomar/aanbiedingen",
+    selectors: {
+      product: ".product",
+      name: ".product__name txt-title",
+      image: ".v-lazy-image",
+      description: ".badge badge--secondary",
+      url: "a",
+      price: "product__price-offer"
+    }
+    // cookie: "[data-testid=uc-accept-all-button]"
+
+  },
+
 
   {
     name: "plus",
@@ -127,25 +145,27 @@ const stores = [
   },
 
 
+
+
+
 ];
 
 export const testStores = [
   {
-    name: "ah",
-    label: "Albert Heijn",
-    url: "https://www.ah.nl/bonus",
+    name: "vomar",
+    label: "Vomar",
+    url: "https://www.folderz.nl/winkels/vomar/aanbiedingen",
+    parseWhileScrolling: true,
     selectors: {
-      product: "[class^=promotion-card_root__]",
-      name: "[class^=typography_root__] span",
-      description: "[data-testhook=card-description] span",
-      image: "picture [class^=promotion-card-image_img__]",
-      cookie: "#accept-cookies",
+      product: ".grid__row-item",
+      name: ".product__name",
+      image: ".v-lazy-image",
+      description: ".badge badge--secondary",
       url: "a",
-      priceAlt: {
-        dec: "[class^=promotion-price_root__] [class^=promotion-price_integer__]",
-        fract: "[class^=promotion-price_root__] [class^=promotion-price_fractional__]",
-      }
+      price: ".product__price-offer"
     }
+    // cookie: "[data-testid=uc-accept-all-button]"
+
   },
 ];
 

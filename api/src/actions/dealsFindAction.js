@@ -13,8 +13,7 @@ export default function dealsFindAction(products, stores) {
 
     const query = `
       SELECT * FROM products
-      WHERE week = ${weekNumber}
-      AND store IN (${storePlaceholders})
+      WHERE store IN (${storePlaceholders})
       AND (${placeholders})
     `;
   
